@@ -1,11 +1,3 @@
-/*
- *  Application: Create New BBCode Tags - Creation de nouvelles balises BBCode
- *  Date: 18/05/2018 - Adaptation pour le forum des forums mai 2022
- *  Version: 1.321052018
- *  Copyright (c) 2018 Daemon <help.forumotion.com>
- *  This work is free. You can redistribute it and/or modify it - Code libre. Vous pouvez le redistribuer et/ou le modifier
- */
-
 (function() {
     BBParser = {
         initialize: function() {
@@ -14,16 +6,17 @@
             });
         },
         add: [
-
-            // Note : N'oubliez pas d'ajouter une virgule après chaque entrée
+            // Note : Ne pas oublier d'ajouter une virgule après chaque entrée
             // '{option}' correspond à l'attribut (optionnel) de la balise elle-même '{content}' correspond au contenu du bloc, entre les deux balises.
             {
+                // Dans l'éditeur, quand le parser tombe sur une balise [latex], il crée le span avec la classe latex,
+                // ce qui permettra de cibler les élements à mettre en forme.
                 tag: 'latex',
                 close: true,
                 defaultOption: 'latex',
                 replacement: '<span class="{option}">{content}</span>',
             }
-            //Ajoutez ici les balises supplémentaires souhaitées ou vos balises personnalisées - Ne pas oublier de mettre une virgule après l'accolade fermante } de la balise précédente./
+            //Ajouter ici les balises supplémentaires souhaitées ou vos balises personnalisées - Ne pas oublier de mettre une virgule après l'accolade fermante } de la balise précédente./
             // Note  : Ne pas ajouter de virgule après la dernière entrée
         ],
         // Il est conseillé de ne rien modifier en dessous de cette ligne
