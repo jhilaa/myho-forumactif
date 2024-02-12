@@ -2,6 +2,7 @@ $(function () {
     $(function () {
         var editoR = $('#text_editor_textarea').sceditor("instance");
 
+        // Fonction associée au bouton pour masquer/afficher le groupe
         function mathsButtonsToogleView() {
             var mathsButtons = $('.maths').not(':first');
             // Masquer ou afficher les autres boutons selon leur visibilité actuelle
@@ -13,24 +14,7 @@ $(function () {
         };
 
 
-        function setLatexTag() {
-            // Récupérer la sélection dans l'éditeur de texte SCEditor
-            var selection = editoR.getRangeHelper().selectedHtml();
-
-            // Vérifier si du texte est sélectionné
-            if (selection) {
-                // Encadrer le texte sélectionné avec des guillemets
-                var texteEncadre = "[latex]" + selection + "[/latex]";
-
-                // Insérer le texte encadré dans l'éditeur de texte SCEditor
-                editoR.insert(texteEncadre);
-            } else {
-                editoR.insert('[latex][/latex]');
-            }
-        }
-
-
-        // Définition des boutons à ajouter
+        // Définition des boutons à ajouter et des actions associées
         var buttons = [{
                 img: "https://i.ibb.co/txkQt72/Calculette.png",
                 title: "Equation",
@@ -40,7 +24,10 @@ $(function () {
                     //img: "https://i.ibb.co/GTkBZ4Y/lx.png",
                     img:"https://i.ibb.co/b72Vkmm/lxred.png",
                     title: "Latex",
-                    action: setLatexTag
+                    action: function () {
+                        //ajoute les balises [latex] de chaque côté du texte sélectionné
+                        editoR.insertText('[latex]','[/latex]');
+                    }
                 },
                 {
                     img: "https://i.ibb.co/YX1nMm6/fraction2.png",
@@ -104,6 +91,6 @@ $(function () {
             // L'action du bouton
             $('.sceditor-' + (index + 1)).click(button.action);
         });
-        mathsButtonsToogleView(); // Appel initial pour configurer la visibilité
+        mathsButtonsToogleView(); // Appel initial pour masquer les boutons au chargement de l'éditeur
     });
 })
